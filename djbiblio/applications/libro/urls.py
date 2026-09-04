@@ -11,7 +11,8 @@ urlpatterns = [
     path('api/autor/list', views.lista_autores.as_view()),
     path('api/autor/list/nacionalidad/<str:nacionalidad>/', views.FiltraAutores.as_view()),
     path('numero_mayor_a_15/<nn:nacionalidad>/<nn:pais>', views.FiltraPorNumero.as_view()),
-    path('api/libros/list/posterior/<aaaa:year>/', views.ListarLibrosPosteriores.as_view())
+    path('api/libros/list/posterior/<aaaa:year>/', views.ListarLibrosPosteriores.as_view()),
+    path('numero_mayor_a_15/sin_converter/<nacionalidad>', views.FiltraPorNumero.as_view()),
 ]
 
 

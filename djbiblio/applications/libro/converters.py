@@ -20,14 +20,10 @@ def validate_string(pattern: str, text: str) -> bool:
 
 
 class ValidYearsConvert:
-    regex = r'([2-9]\d{3,}|[3-9]\d{2}|199\d)'
+    regex = r'([2-9]\d{3,}|[3-9]\d{2}|199\d)' # al parecer basta con que lo especifiques dentro de la clase
     
     def to_python(self, value):
-        validated = validate_string(self.regex, value)
-        if validated and int(value) > 15:
-            return value
-        else:
-            raise Exception("Error de año")
+        return value
     
     def to_url(self, value):
         return value
