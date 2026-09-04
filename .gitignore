@@ -1,0 +1,5 @@
+djbiblio/applications/prestamo/migrations/
+djbiblio/applications/libro/migrations/
+djenv
+djbiblio/djbiblio/settings.before.py
+djbiblio/djbiblio/settings/

@@ -1,0 +1,9 @@
+URL
+ └── Vista
+      └── get_queryset()
+           └── Modelo.objects
+                └── Manager personalizado
+                     └── Método de consulta
+                          └── QuerySet
+                               └── Serializer
+                                    └── JSON
