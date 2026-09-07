@@ -1,0 +1,1 @@
+Personal practice of Django rest framework, based on the course created by Christian Santa Cruz, "Curso Django Rest Framework - Servicios REST con Python" on udemy (https://www.udemy.com/course/curso-django-rest-framework-servicios-rest-con-python/?couponCode=MT260902G2).
