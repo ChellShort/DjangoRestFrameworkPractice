@@ -3,7 +3,10 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework.generics import ListAPIView
 from applications.libro.models import Autor, Libro
-from .serializers import AutorSerializer, LibroSerializer
+from .serializers import (
+    AutorSerializer,
+    LibroSerializer, 
+    PaginationSerializer)
 
 class lista_autores(ListAPIView):
     # queryset = Autor.objects.all() # Esto se transforma en sintaxis SQL
@@ -41,4 +44,32 @@ class ListarLibrosPosteriores(ListAPIView):
     def get_queryset(self):
         year = self.kwargs["year"]
         query_set = Libro.objects.listar_libros_posteriores_año(year)
+        return query_set
+    
+    
+class LibrosPorTitulo(ListAPIView):
+    serializer_class = LibroSerializer
+    def get_queryset(self):
+        kword = self.request.query_params.get("titulo", "")
+        query_set = Libro.objects.libros_por_titulo(kword)
+        return query_set
+    
+class FiltrarLibros(ListAPIView):
+    serializer_class = LibroSerializer
+    def get_queryset(self):
+        kword = self.request.query_params.get("titulo", "")
+        año = self.request.query_params.get("ano", 1990)
+        query_set = Libro.objects.filtrar_libros(kword, año)
+        return query_set
+        
+class LibrosAutor(ListAPIView):
+    serializer_class = LibroSerializer
+    pagination_class = PaginationSerializer
+    
+    def get_queryset(self):
+        autor_name= self.request.query_params.get('autor_name', "")
+        pagina = self.request.query_params.get('page', "")
+        if pagina == "":
+            pagina = 1
+        query_set = Libro.objects.filtrar_libros_por_autor(autor_name)
         return query_set

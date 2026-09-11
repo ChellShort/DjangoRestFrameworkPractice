@@ -1,5 +1,6 @@
-from rest_framework import serializers
+from rest_framework import serializers, pagination
 from .models import Autor, Libro
+
 class AutorSerializer(serializers.ModelSerializer):
     class Meta:
         model= Autor
@@ -17,3 +18,7 @@ class LibroSerializer(serializers.ModelSerializer):
             'autor', 
             'lanzamiento'
             )
+        
+class PaginationSerializer(pagination.PageNumberPagination):
+    page_size = 3
+    max_page_size = 50

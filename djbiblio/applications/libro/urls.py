@@ -13,6 +13,9 @@ urlpatterns = [
     path('numero_mayor_a_15/<nn:nacionalidad>/<nn:pais>', views.FiltraPorNumero.as_view()),
     path('api/libros/list/posterior/<aaaa:year>/', views.ListarLibrosPosteriores.as_view()),
     path('numero_mayor_a_15/sin_converter/<nacionalidad>', views.FiltraPorNumero.as_view()),
+    path('api/libros/titulo/', views.LibrosPorTitulo.as_view()),
+    path('api/libros_fecha/titulo/', views.FiltrarLibros.as_view()), # http://127.0.0.1:8000/api/libros_fecha/titulo/?titulo=Halo&ano=2025
+    path('api/libros_filtrar/autor/', views.LibrosAutor.as_view())
 ]
 
 
