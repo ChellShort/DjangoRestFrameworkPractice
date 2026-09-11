@@ -1,12 +1,13 @@
 from django.shortcuts import render
 
 # Create your views here.
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from applications.libro.models import Autor, Libro
 from .serializers import (
     AutorSerializer,
     LibroSerializer, 
     PaginationSerializer)
+from rest_framework.response import Response
 
 class lista_autores(ListAPIView):
     # queryset = Autor.objects.all() # Esto se transforma en sintaxis SQL
@@ -73,3 +74,16 @@ class LibrosAutor(ListAPIView):
             pagina = 1
         query_set = Libro.objects.filtrar_libros_por_autor(autor_name)
         return query_set
+    
+    
+class DetailAutor(RetrieveAPIView):
+    serializer_class = AutorSerializer
+    query_set = Autor.objects.all()
+    
+    def get_queryset(self):
+        return self.query_set
+    
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
